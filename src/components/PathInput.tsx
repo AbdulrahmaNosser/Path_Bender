@@ -94,10 +94,10 @@ export function PathInput({ value, onChange, theme, onRelativePathResult }: Path
   };
 
   const examplePaths = [
-    'C:\\Users\\John\\Documents\\project.txt',
-    '/home/john/documents/project.txt',
+    'C:\\Users\\Palestine\\Documents\\project.txt',
+    '/home/palestine/documents/project.txt',
     'r"C:\\Program Files\\MyApp"',
-    'file:///C:/Users/John/Desktop'
+    'file:///C:/Users/Palestine/Desktop'
   ];
 
   return (
@@ -119,7 +119,7 @@ export function PathInput({ value, onChange, theme, onRelativePathResult }: Path
           onFocus={() => setIsFocused(true)}
           onBlur={() => setIsFocused(false)}
           onPaste={handlePaste}
-          placeholder="Paste your path here... (e.g., C:\Users\John\Documents)"
+          placeholder="Paste your path here... (e.g., C:\Users\Palestine\Documents)"
           className={`${getInputClasses()} h-24 text-lg resize-none ${isFocused ? 'ring-2 ring-current' : ''}`}
         />
         <FolderOpen className="absolute top-4 right-4 w-5 h-5 opacity-50" />
@@ -165,7 +165,7 @@ export function PathInput({ value, onChange, theme, onRelativePathResult }: Path
                 type="text"
                 value={fromPath}
                 onChange={(e) => setFromPath(e.target.value)}
-                placeholder="C:\Users\John\Documents"
+                placeholder="C:\Users\Palestine\Documents"
                 className={getInputClasses()}
               />
             </div>
@@ -176,7 +176,7 @@ export function PathInput({ value, onChange, theme, onRelativePathResult }: Path
                 type="text"
                 value={toPath}
                 onChange={(e) => setToPath(e.target.value)}
-                placeholder="C:\Users\John\Pictures\photo.jpg"
+                placeholder="C:\Users\Palestine\Pictures\photo.jpg"
                 className={getInputClasses()}
               />
             </div>
