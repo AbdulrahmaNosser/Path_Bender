@@ -128,13 +128,13 @@ function App() {
           )}
           
           {/* AdSense Ad */}
-          <div className="flex justify-center">
+          {/* <div className="flex justify-center">
             <AdSenseAd 
               adSlot="1234567890"
               adFormat="auto"
               fullWidthResponsive={true}
             />
-          </div>
+          </div> */}
         </div>
         
         {!inputPath && (
