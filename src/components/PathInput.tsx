@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { FolderOpen, FileText, GitBranch, ArrowRight } from 'lucide-react';
-import { PathConverter } from '../utils/pathConverter';
+import { PathBender } from '../utils/PathBender';
 
 interface PathInputProps {
   value: string;
@@ -24,7 +24,7 @@ export function PathInput({ value, onChange, theme, onRelativePathResult }: Path
 
   const calculateRelative = () => {
     if (fromPath.trim() && toPath.trim()) {
-      const result = PathConverter.calculateRelativePath(fromPath, toPath);
+      const result = PathBender.calculateRelativePath(fromPath, toPath);
       setRelativePath(result);
       if (onRelativePathResult) {
         onRelativePathResult(result);

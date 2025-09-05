@@ -27,7 +27,7 @@ export function Header({ theme, onThemeChange }: HeaderProps) {
       <div className="flex items-center justify-between mb-8">
         <div className="flex items-center gap-3">
           <Zap className="w-8 h-8" />
-          <span className="text-2xl font-bold">PathConverter</span>
+          <span className="text-2xl font-bold">PathBender</span>
         </div>
         <ThemeSelector currentTheme={theme} onThemeChange={onThemeChange} />
       </div>
@@ -37,8 +37,8 @@ export function Header({ theme, onThemeChange }: HeaderProps) {
       </h1>
       
       <p className="text-lg md:text-xl opacity-90 mt-4 max-w-3xl mx-auto leading-relaxed">
-        Convert file and directory paths between operating systems and programming languages with 
-        intelligent escape character handling and one-click clipboard integration.
+        Convert file and directory paths between operating systems and programming languages,<br />
+        and calculate relative paths between absolute paths.
       </p>
       
       <div className="flex flex-wrap justify-center gap-2 mt-6 text-sm opacity-75">

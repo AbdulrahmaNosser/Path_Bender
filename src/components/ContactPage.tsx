@@ -196,9 +196,9 @@ export function ContactPage({ theme, onBack }: ContactPageProps) {
         {/* Contact Info */}
         <div className="space-y-6">
           <div className={getCardClasses()}>
-            <h3 className="text-xl font-semibold mb-4">About PathConverter</h3>
+            <h3 className="text-xl font-semibold mb-4">About PathBender</h3>
             <p className="opacity-90 leading-relaxed mb-4">
-              PathConverter was built to solve the everyday frustration of working with file paths 
+              PathBender was built to solve the everyday frustration of working with file paths 
               across different operating systems and programming environments. Whether you're a 
               developer, system administrator, or power user, this tool streamlines path conversion 
               with intelligent formatting and one-click copying.

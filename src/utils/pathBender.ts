@@ -1,6 +1,6 @@
 import { PathFormat, ConversionResult } from '../types';
 
-export class PathConverter {
+export class PathBender {
   static detectFormat(path: string): PathFormat | null {
     // Windows path detection
     if (/^[A-Za-z]:\\/.test(path)) {

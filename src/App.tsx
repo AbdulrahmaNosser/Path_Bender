@@ -7,14 +7,14 @@ import { MatrixRain } from './components/MatrixRain';
 import { ContactPage } from './components/ContactPage';
 import { KofiButton } from './components/KofiButton';
 import { AdSenseAd } from './components/AdSenseAd';
-import { PathConverter } from './utils/pathConverter';
+import { PathBender } from './utils/PathBender';
 import { Theme } from './types';
 import './styles/themes.css';
 
 function App() {
   const [inputPath, setInputPath] = useState('');
   const [theme, setTheme] = useState<Theme>('light-developer');
-  const [conversionResults, setConversionResults] = useState(PathConverter.convertPath(''));
+  const [conversionResults, setConversionResults] = useState(PathBender.convertPath(''));
   const [currentPage, setCurrentPage] = useState<'home' | 'contact'>('home');
 
   const getContainerClasses = () => {
@@ -30,7 +30,7 @@ function App() {
 
   useEffect(() => {
     if (inputPath.trim()) {
-      setConversionResults(PathConverter.convertPath(inputPath));
+      setConversionResults(PathBender.convertPath(inputPath));
     } else {
       setConversionResults([]);
     }
@@ -137,7 +137,7 @@ function App() {
           </div>
         )}
         
-        <footer className={getFooterClasses()}>
+        {/* <footer className={getFooterClasses()}>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <button
               onClick={() => setCurrentPage('contact')}
@@ -151,7 +151,7 @@ function App() {
           <p className="mt-4 text-sm opacity-60">
             Built with React, TypeScript, and Tailwind CSS
           </p>
-        </footer>
+        </footer> */}
       </div>
     </div>
   );
