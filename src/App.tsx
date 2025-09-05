@@ -13,9 +13,18 @@ import './styles/themes.css';
 
 function App() {
   const [inputPath, setInputPath] = useState('');
-  const [theme, setTheme] = useState<Theme>('light-developer');
+  const [theme, setTheme] = useState<Theme>(() => {
+    // Load theme from localStorage on initialization
+    const savedTheme = localStorage.getItem('pathBender-theme') as Theme;
+    return savedTheme || 'light-developer';
+  });
   const [conversionResults, setConversionResults] = useState(PathBender.convertPath(''));
   const [currentPage, setCurrentPage] = useState<'home' | 'contact'>('home');
+
+  const handleThemeChange = (newTheme: Theme) => {
+    setTheme(newTheme);
+    localStorage.setItem('pathBender-theme', newTheme);
+  };
 
   const getContainerClasses = () => {
     const base = "min-h-screen transition-all duration-500 p-4 md:p-8";
@@ -86,7 +95,7 @@ function App() {
       <div className={getContainerClasses()}>
         {getBackgroundEffects()}
         <div className="relative z-10 flex flex-col items-center">
-          <Header theme={theme} onThemeChange={setTheme} />
+          <Header theme={theme} onThemeChange={handleThemeChange} />
           <ContactPage theme={theme} onBack={() => setCurrentPage('home')} />
         </div>
       </div>
@@ -98,7 +107,7 @@ function App() {
       {getBackgroundEffects()}
       
       <div className="relative z-10 flex flex-col items-center">
-        <Header theme={theme} onThemeChange={setTheme} />
+        <Header theme={theme} onThemeChange={handleThemeChange} />
         
         <div className="w-full space-y-12">
           <PathInput 
