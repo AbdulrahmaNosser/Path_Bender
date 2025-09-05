@@ -1,0 +1,168 @@
+/* Theme System - CSS Custom Properties */
+:root {
+  /* Matrix Theme */
+  --matrix-bg: #000000;
+  --matrix-text: #00FF41;
+  --matrix-accent: #003B00;
+  --matrix-highlight: #00FF41;
+  --matrix-font: 'Courier New', Monaco, monospace;
+
+  /* Hacker Terminal Theme */
+  --hacker-bg: #0C0C0C;
+  --hacker-text: #32CD32;
+  --hacker-accent: #FFB000;
+  --hacker-error: #FF0000;
+  --hacker-info: #00BFFF;
+  --hacker-font: 'Courier New', 'Consolas', monospace;
+
+  /* Programmer Dark Theme */
+  --programmer-bg: #1E1E1E;
+  --programmer-text: #D4D4D4;
+  --programmer-accent: #007ACC;
+  --programmer-success: #4EC9B0;
+  --programmer-warning: #FF8C00;
+  --programmer-font: 'SF Mono', 'Monaco', 'Inconsolata', monospace;
+
+  /* Light Developer Theme */
+  --light-bg: #FFFFFF;
+  --light-text: #2D2D30;
+  --light-accent: #0078D4;
+  --light-secondary: #6C6C6C;
+  --light-error: #E51400;
+  --light-font: 'SF Mono', 'Menlo', 'DejaVu Sans Mono', monospace;
+
+  /* Retro Computing Theme */
+  --retro-bg: #000000;
+  --retro-text: #FFB000;
+  --retro-accent: #FF8000;
+  --retro-font: 'Courier New', monospace;
+
+  /* Cyberpunk Theme */
+  --cyberpunk-bg: #1A0033;
+  --cyberpunk-text: #FF0080;
+  --cyberpunk-accent: #00FFFF;
+  --cyberpunk-highlight: #FF00FF;
+  --cyberpunk-secondary: #00FFFF;
+  --cyberpunk-font: 'Courier New', monospace;
+
+  /* GitHub Dark Theme */
+  --github-bg: #0D1117;
+  --github-text: #F0F6FC;
+  --github-accent: #58A6FF;
+  --github-secondary: #8B949E;
+  --github-border: #30363D;
+  --github-font: 'SFMono-Regular', 'Consolas', 'Liberation Mono', monospace;
+
+  /* Solarized Theme */
+  --solarized-bg: #002B36;
+  --solarized-text: #839496;
+  --solarized-accent: #268BD2;
+  --solarized-highlight: #B58900;
+  --solarized-green: #859900;
+  --solarized-font: 'Source Code Pro', 'Droid Sans Mono', monospace;
+}
+
+/* Theme Classes */
+[data-theme="matrix"] {
+  background: var(--matrix-bg);
+  color: var(--matrix-text);
+  font-family: var(--matrix-font);
+}
+
+[data-theme="hacker"] {
+  background: var(--hacker-bg);
+  color: var(--hacker-text);
+  font-family: var(--hacker-font);
+}
+
+[data-theme="programmer-dark"] {
+  background: var(--programmer-bg);
+  color: var(--programmer-text);
+  font-family: var(--programmer-font);
+}
+
+[data-theme="light-developer"] {
+  background: var(--light-bg);
+  color: var(--light-text);
+  font-family: var(--light-font);
+}
+
+[data-theme="retro-computing"] {
+  background: var(--retro-bg);
+  color: var(--retro-text);
+  font-family: var(--retro-font);
+}
+
+[data-theme="cyberpunk"] {
+  background: var(--cyberpunk-bg);
+  color: var(--cyberpunk-text);
+  font-family: var(--cyberpunk-font);
+}
+
+[data-theme="github-dark"] {
+  background: var(--github-bg);
+  color: var(--github-text);
+  font-family: var(--github-font);
+}
+
+[data-theme="solarized"] {
+  background: var(--solarized-bg);
+  color: var(--solarized-text);
+  font-family: var(--solarized-font);
+}
+
+/* Special Effects */
+[data-theme="matrix"] .glow {
+  text-shadow: 0 0 10px var(--matrix-text);
+}
+
+[data-theme="hacker"]::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    transparent 50%, 
+    rgba(50, 205, 50, 0.03) 50%
+  );
+  background-size: 100% 4px;
+  pointer-events: none;
+  z-index: -1;
+}
+
+[data-theme="retro-computing"]::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    transparent 50%, 
+    rgba(255, 176, 0, 0.05) 50%
+  );
+  background-size: 100% 2px;
+  pointer-events: none;
+  z-index: -1;
+}
+
+[data-theme="cyberpunk"] .neon {
+  text-shadow: 
+    0 0 3px currentColor,
+    0 0 6px currentColor,
+    0 0 9px currentColor;
+}
+
+[data-theme="cyberpunk"] {
+  background: var(--cyberpunk-bg);
+  color: var(--cyberpunk-text);
+  font-family: var(--cyberpunk-font);
+  text-shadow: 0 0 1px currentColor;
+}
+
+/* Transitions */
+* {
+  transition: all 0.3s ease;
+}
