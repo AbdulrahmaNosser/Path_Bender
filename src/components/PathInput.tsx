@@ -38,6 +38,8 @@ export function PathInput({ value, onChange, theme, onRelativePathResult }: Path
     switch (theme) {
       case 'light-developer':
         return `${base} border-gray-300 focus:border-blue-500`;
+      case 'cyberpunk':
+        return `${base} cyberpunk-input`;
       default:
         return `${base} border-current border-opacity-30 focus:border-opacity-60`;
     }
@@ -60,7 +62,7 @@ export function PathInput({ value, onChange, theme, onRelativePathResult }: Path
       case 'matrix':
         return `${base} bg-green-700 hover:bg-green-600 text-green-100`;
       case 'cyberpunk':
-        return `${base} bg-cyan-700 hover:bg-cyan-600 text-cyan-100`;
+        return `${base} cyberpunk-button text-cyan-100`;
       case 'solarized':
         return `${base} bg-blue-700 hover:bg-blue-600 text-blue-100`;
       default:
@@ -83,7 +85,7 @@ export function PathInput({ value, onChange, theme, onRelativePathResult }: Path
       case 'retro-computing':
         return `${base} bg-black border-yellow-600`;
       case 'cyberpunk':
-        return `${base} bg-slate-900 border-cyan-500`;
+        return `${base} cyberpunk-card`;
       case 'github-dark':
         return `${base} bg-gray-900 border-gray-600`;
       case 'solarized':

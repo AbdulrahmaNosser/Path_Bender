@@ -10,6 +10,7 @@ import { MatrixRain } from './components/MatrixRain';
 import { PathBender } from './utils/PathBender';
 import { Theme } from './types';
 import './styles/themes.css';
+import './styles/cyberpunk-effects.css';
 
 function App() {
   const [inputPath, setInputPath] = useState('');
@@ -82,7 +83,7 @@ function App() {
       case 'matrix':
         return `${base} bg-green-700 hover:bg-green-600 text-green-100`;
       case 'cyberpunk':
-        return `${base} bg-cyan-700 hover:bg-cyan-600 text-cyan-100`;
+        return `${base} cyberpunk-button text-cyan-100`;
       case 'solarized':
         return `${base} bg-blue-700 hover:bg-blue-600 text-blue-100`;
       default:

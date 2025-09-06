@@ -1,3 +1,6 @@
+/* Import enhanced cyberpunk effects */
+@import './cyberpunk-effects.css';
+
 /* Theme System - CSS Custom Properties */
 :root {
   /* Matrix Theme */
@@ -39,7 +42,7 @@
 
   /* Cyberpunk Theme */
   --cyberpunk-bg: #1A0033;
-  --cyberpunk-text: #FF0080;
+  --cyberpunk-text: #fe56aa;
   --cyberpunk-accent: #00FFFF;
   --cyberpunk-highlight: #FF00FF;
   --cyberpunk-secondary: #00FFFF;
@@ -148,19 +151,7 @@
   z-index: -1;
 }
 
-[data-theme="cyberpunk"] .neon {
-  text-shadow: 
-    0 0 3px currentColor,
-    0 0 6px currentColor,
-    0 0 12px currentColor;
-}
-
-[data-theme="cyberpunk"] {
-  background: var(--cyberpunk-bg);
-  color: var(--cyberpunk-text);
-  font-family: var(--cyberpunk-font);
-  text-shadow: 0 0 1px currentColor;
-}
+/* Cyberpunk styles are now handled by cyberpunk-effects.css */
 
 /* Transitions */
 * {

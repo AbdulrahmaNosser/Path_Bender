@@ -55,7 +55,7 @@ export function ConversionOutput({ results, theme }: ConversionOutputProps) {
       case 'retro-computing':
         return `${base} bg-black border-yellow-600 hover:bg-gray-900 hover:shadow-yellow-600/20 hover:shadow-lg`;
       case 'cyberpunk':
-        return `${base} bg-slate-900 border-cyan-500 hover:bg-slate-800 hover:shadow-cyan-500/20 hover:shadow-lg`;
+        return `${base} cyberpunk-card`;
       case 'github-dark':
         return `${base} bg-gray-900 border-gray-600 hover:bg-gray-800 hover:shadow-lg`;
       case 'solarized':
@@ -84,7 +84,7 @@ export function ConversionOutput({ results, theme }: ConversionOutputProps) {
       case 'retro-computing':
         return `${base} bg-yellow-700 hover:bg-yellow-600 text-yellow-100`;
       case 'cyberpunk':
-        return `${base} bg-cyan-700 hover:bg-cyan-600 text-cyan-100`;
+        return `${base} cyberpunk-button text-cyan-100`;
       case 'github-dark':
         return `${base} bg-blue-700 hover:bg-blue-600 text-blue-100`;
       case 'solarized':

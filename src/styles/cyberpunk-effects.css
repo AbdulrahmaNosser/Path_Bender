@@ -1,0 +1,213 @@
+/* Enhanced Cyberpunk Glow Effects */
+
+/* Multi-layer neon glow with flickering animation - reduced frequency */
+@keyframes neonFlicker {
+  0%, 100% { 
+    opacity: 1; 
+    filter: brightness(1);
+  }
+  5% { 
+    opacity: 0.9; 
+    filter: brightness(0.9);
+  }
+  6% { 
+    opacity: 1; 
+    filter: brightness(1.1);
+  }
+  7% { 
+    opacity: 0.95; 
+    filter: brightness(0.95);
+  }
+  8% { 
+    opacity: 1; 
+    filter: brightness(1);
+  }
+  85% { 
+    opacity: 0.9; 
+    filter: brightness(0.9);
+  }
+  86% { 
+    opacity: 1; 
+    filter: brightness(1.1);
+  }
+  87% { 
+    opacity: 0.95; 
+    filter: brightness(0.95);
+  }
+  88% { 
+    opacity: 1; 
+    filter: brightness(1);
+  }
+}
+
+/* Random flicker variation for more realistic neon effect - reduced frequency */
+@keyframes neonFlickerRandom {
+  0%, 100% { 
+    opacity: 1; 
+    filter: brightness(1);
+  }
+  3% { 
+    opacity: 0.9; 
+    filter: brightness(0.9);
+  }
+  4% { 
+    opacity: 1; 
+    filter: brightness(1.1);
+  }
+  5% { 
+    opacity: 0.95; 
+    filter: brightness(0.95);
+  }
+  6% { 
+    opacity: 1; 
+    filter: brightness(1);
+  }
+  20% { 
+    opacity: 0.9; 
+    filter: brightness(0.9);
+  }
+  21% { 
+    opacity: 1; 
+    filter: brightness(1.1);
+  }
+  22% { 
+    opacity: 0.95; 
+    filter: brightness(0.95);
+  }
+  23% { 
+    opacity: 1; 
+    filter: brightness(1);
+  }
+  90% { 
+    opacity: 0.9; 
+    filter: brightness(0.9);
+  }
+  91% { 
+    opacity: 1; 
+    filter: brightness(1.1);
+  }
+  92% { 
+    opacity: 0.95; 
+    filter: brightness(0.95);
+  }
+  93% { 
+    opacity: 1; 
+    filter: brightness(1);
+  }
+}
+
+/* Enhanced cyberpunk neon glow with multiple layers */
+[data-theme="cyberpunk"] .neon {
+  position: relative;
+  color: #ffffff;
+  text-shadow: 
+    /* First layer - white only */
+    0 0 2px #ffffff,
+    /* Inner glow layers - current color */
+    0 0 4px currentColor,
+    0 0 6px currentColor,
+    /* Outer glow layers */
+    0 0 8px var(--cyberpunk-accent),
+    0 0 12px var(--cyberpunk-accent),
+    0 0 16px var(--cyberpunk-accent),
+    0 0 20px var(--cyberpunk-accent),
+    /* Extended glow for dramatic effect */
+    0 0 24px var(--cyberpunk-highlight),
+    0 0 32px var(--cyberpunk-highlight);
+  
+  animation: neonFlicker 6s ease-in-out infinite;
+}
+
+/* Alternative flicker animation for variety */
+[data-theme="cyberpunk"] .neon-random {
+  position: relative;
+  color: #ffffff;
+  text-shadow: 
+    /* First layer - white only */
+    0 0 2px #ffffff,
+    /* Inner glow layers - current color */
+    0 0 4px currentColor,
+    0 0 6px currentColor,
+    0 0 8px var(--cyberpunk-accent),
+    0 0 12px var(--cyberpunk-accent),
+    0 0 16px var(--cyberpunk-accent),
+    0 0 20px var(--cyberpunk-accent),
+    0 0 24px var(--cyberpunk-highlight),
+    0 0 32px var(--cyberpunk-highlight);
+  
+  animation: neonFlickerRandom 8s ease-in-out infinite;
+}
+
+/* Enhanced cyberpunk background with subtle glow */
+[data-theme="cyberpunk"] {
+  background: var(--cyberpunk-bg);
+  color: var(--cyberpunk-text);
+  font-family: var(--cyberpunk-font);
+  text-shadow: 0 0 1px currentColor;
+  position: relative;
+}
+
+/* Cyberpunk button glow effects */
+[data-theme="cyberpunk"] .cyberpunk-button {
+  position: relative;
+  background: linear-gradient(45deg, var(--cyberpunk-accent), var(--cyberpunk-highlight));
+  border: 2px solid var(--cyberpunk-accent);
+  box-shadow: 
+    0 0 5px var(--cyberpunk-accent),
+    0 0 10px var(--cyberpunk-accent),
+    0 0 15px var(--cyberpunk-accent),
+    inset 0 0 5px rgba(255, 255, 255, 0.1);
+  
+  animation: neonFlicker 5s ease-in-out infinite;
+}
+
+[data-theme="cyberpunk"] .cyberpunk-button:hover {
+  box-shadow: 
+    0 0 8px var(--cyberpunk-accent),
+    0 0 16px var(--cyberpunk-accent),
+    0 0 24px var(--cyberpunk-accent),
+    0 0 32px var(--cyberpunk-highlight),
+    inset 0 0 8px rgba(255, 255, 255, 0.2);
+}
+
+/* Cyberpunk input field glow */
+[data-theme="cyberpunk"] .cyberpunk-input {
+  border: 2px solid var(--cyberpunk-accent);
+  box-shadow: 
+    0 0 3px var(--cyberpunk-accent),
+    0 0 6px var(--cyberpunk-accent),
+    inset 0 0 3px rgba(0, 255, 255, 0.1);
+  
+  animation: neonFlicker 7s ease-in-out infinite;
+}
+
+[data-theme="cyberpunk"] .cyberpunk-input:focus {
+  box-shadow: 
+    0 0 5px var(--cyberpunk-accent),
+    0 0 10px var(--cyberpunk-accent),
+    0 0 15px var(--cyberpunk-accent),
+    0 0 20px var(--cyberpunk-highlight),
+    inset 0 0 5px rgba(0, 255, 255, 0.2);
+}
+
+/* Cyberpunk card/container glow */
+[data-theme="cyberpunk"] .cyberpunk-card {
+  border: 1px solid var(--cyberpunk-accent);
+  box-shadow: 
+    0 0 5px var(--cyberpunk-accent),
+    0 0 10px var(--cyberpunk-accent),
+    inset 0 0 5px rgba(0, 255, 255, 0.05);
+  
+  animation: neonFlickerRandom 9s ease-in-out infinite;
+}
+
+/* Subtle cyberpunk accent glow for smaller elements */
+[data-theme="cyberpunk"] .cyberpunk-accent {
+  text-shadow: 
+    /* First layer - white only */
+    0 0 2px #ffffff,
+    0 0 4px var(--cyberpunk-accent),
+    0 0 6px var(--cyberpunk-accent);
+  
+  animation: neonFlicker 4s ease-in-out infinite;
+}
