@@ -1,7 +1,10 @@
 import React, { useEffect, useRef } from 'react';
 
 
-const drop_time = 75;
+const drop_time = 90;
+const font_size = 25;
+const col_life = 0.1;
+const rain_opacity = 0.5;
 
 export function MatrixRain() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -26,37 +29,63 @@ export function MatrixRain() {
     const matrix = "MЇЉЊЋЌЍЎЏБГДЖИЙЛПФЦЧШЩЪЫЭЮЯвджзийклмнптфцчшщъыьэюяѐёђѓєїљњћќѝўџѢѣѧѮѱѲѳҋҌҍҎҏҐґҒғҔҕҖҗҘҙҚқҝҟҡҢңҤҥҩҪҫҬҭҰұҲҳҵҷҹҺҿӁӂӃӄӆӇӈӊӋӌӎӐӑӒӓӔӕӖӗӘәӚӛӜӝӞӟӡӢӣӤӥӦӧӨөӪӫӬӭӮӯӰӱӲӳӴӵӶӷӸӹӺӽӿԀԍԏԐԑԓԚԟԦԧϤϥϫϭｩｪｫｬｭｮｯｰｱｲｳｴｵｶｷｸｹｺｻｼｽｾｿﾀﾁﾂﾃﾄﾅﾆﾇﾈﾉﾊﾋﾌﾍﾎﾏﾐﾑﾒﾓﾔﾕﾖﾗﾘﾙﾚﾛﾜﾝⲁⲂⲃⲄΓΔΘΛΞΠЀЁЂЃЄⲉⲊⲋⲌⲍⲏⲑⲓⲕⲗⲙⲛⲜⲝⲡⲧⲩⲫⲭⲯⳁⳈⳉⳋⳤ⳥⳦⳨⳩∀∁∂∃∄∅∆∇∈∉∊∋∌∍∎∏∐∑∓ℇℏ℥Ⅎℷ⩫⨀⨅⨆⨉⨍⨎⨏⨐⨑⨒⨓⨔⨕⨖⨗⨘⨙⨚⨛⨜⨝⨿⩪";
     const matrixArray = matrix.split("");
 
-    const font_size = 25;
     const columns = canvas.width / font_size;
 
     const drops: number[] = [];
-    const characterGlows: Array<{y: number, intensity: number, age: number}[]> = []; // Track glow for each character in each column
+    const characterAges: Array<{y: number, age: number, text: string}[]> = []; // Track age and text of each character in each column
     
     for (let x = 0; x < columns; x++) {
       drops[x] = 1;
-      characterGlows[x] = []; // Initialize empty glow array for each column
+      characterAges[x] = []; // Initialize empty age array for each column
     }
 
-    function drawGlowText(ctx: CanvasRenderingContext2D, text: string, x: number, y: number, intensity: number = 1) {
-      ctx.fillStyle = "#00FF41";
-
-      // Calculate glow intensity based on distance from leading character
-      const glowIntensity = Math.max(0, intensity);
-
-      if (glowIntensity > 0) {
-        // Outer faint glow
-        ctx.shadowColor = `rgba(0, 255, 65, ${0.5 * glowIntensity})`;
-        ctx.shadowBlur = 40 * glowIntensity;
+    function drawGlowText(ctx: CanvasRenderingContext2D, text: string, x: number, y: number, age: number = 0) {
+      
+      if (age === 0) {
+        // Age 0: Just drawn - use pure white glow
+        ctx.fillStyle = "#FFFFFF";
+        // Outer glow
+        ctx.shadowColor = "rgba(255, 255, 255, 1)";
+        ctx.shadowBlur = 40;
         ctx.fillText(text, x, y);
 
         // Mid glow
-        ctx.shadowColor = `rgba(0, 255, 65, ${1 * glowIntensity})`;
-        ctx.shadowBlur = 20 * glowIntensity;
+        ctx.shadowColor = "rgba(255, 255, 255, 1)";
+        ctx.shadowBlur = 20;
+        ctx.fillText(text, x, y);
+
+        // Inner glow
+        ctx.shadowColor = "rgba(255, 255, 255, 1)";
+        ctx.shadowBlur = 15;
+        ctx.fillText(text, x, y);
+
+        // Inner glow
+        ctx.shadowColor = "rgba(255, 255, 255, 1)";
+        ctx.shadowBlur = 10;
+        ctx.fillText(text, x, y);
+
+        // Inner glow
+        ctx.shadowColor = "rgba(255, 255, 255, 1)";
+        ctx.shadowBlur = 5;
+        ctx.fillText(text, x, y);
+      } else if (age <= 5) {
+        // Age 1-5: Green-to-white transition glow
+        ctx.fillStyle = "#00FF41";
+        const intensity = Math.max(0, 1 - (age / 5)); // Fade from 1 to 0 over 5 ages
+        
+        // Outer faint glow
+        ctx.shadowColor = `rgba(0, 255, 65, ${0.5 * intensity})`;
+        ctx.shadowBlur = 40 * intensity;
+        ctx.fillText(text, x, y);
+
+        // Mid glow
+        ctx.shadowColor = `rgba(0, 255, 65, ${1 * intensity})`;
+        ctx.shadowBlur = 20 * intensity;
         ctx.fillText(text, x, y);
 
         // Inner bright glow
-        ctx.shadowColor = `rgba(255, 255, 255, ${1 * glowIntensity})`;
-        ctx.shadowBlur = 10 * glowIntensity;
+        ctx.shadowColor = `rgba(255, 255, 255, ${1 * intensity})`;
+        ctx.shadowBlur = 10 * intensity;
         ctx.fillText(text, x, y);
       }
 
@@ -69,7 +98,8 @@ export function MatrixRain() {
     function draw() {
       if (!ctx || !canvas) return;
       
-      ctx.fillStyle = "rgba(0, 0, 0, 0.1)";
+      // Clear the entire canvas
+      ctx.fillStyle = "rgba(0, 0, 0, " + col_life + ")";
       ctx.fillRect(0, 0, canvas.width, canvas.height);
 
       ctx.font = font_size + "px courier";
@@ -78,47 +108,41 @@ export function MatrixRain() {
         const text = matrixArray[Math.floor(Math.random() * matrixArray.length)];
         const currentY = drops[i] * font_size;
         
-        // Add new glow for the current character (most recent = full intensity)
-        characterGlows[i].push({
+        // Age all existing characters first (increment their age)
+        characterAges[i] = characterAges[i].map(char => ({
+          ...char,
+          age: char.age + 1
+        })).filter(char => char.age <= 5); // Remove characters older than 5
+        
+        // Add new character with age 0 (just drawn)
+        characterAges[i].push({
           y: currentY,
-          intensity: 1.0,
-          age: 0
+          age: 0,
+          text: text
         });
-        
-        // Age and fade existing glows
-        characterGlows[i] = characterGlows[i].map(glow => ({
-          ...glow,
-          age: glow.age + 1,
-          intensity: Math.max(0, glow.intensity - 0.02) // Fade by 2% per frame
-        })).filter(glow => glow.intensity > 0.01); // Remove very dim glows
-        
-        // Draw all characters with their individual glows
-        let hasGlow = false;
-        for (const glow of characterGlows[i]) {
-          if (Math.abs(glow.y - currentY) < font_size / 2) { // If this glow is for current character
-            if (glow.intensity > 0.1) {
-              drawGlowText(ctx, text, i * font_size, currentY, glow.intensity);
-              hasGlow = true;
-            }
-            break;
-          }
-        }
-        
-        // If no glow, draw regular character
-        if (!hasGlow) {
-          ctx.fillStyle = "#00FF41";
-          ctx.shadowColor = "transparent";
-          ctx.shadowBlur = 0;
-          ctx.fillText(text, i * font_size, currentY);
-        }
         
         // Reset column when it reaches bottom
         if (currentY > canvas.height && Math.random() > 0.975) {
           drops[i] = 0;
-          characterGlows[i] = []; // Clear all glows for this column
+          characterAges[i] = []; // Clear all characters for this column
         }
 
         drops[i]++;
+      }
+      
+      // Draw all characters after processing all columns
+      for (let i = 0; i < drops.length; i++) {
+        for (const char of characterAges[i]) {
+          if (char.age <= 5) {
+            drawGlowText(ctx, char.text, i * font_size, char.y, char.age);
+          } else {
+            // Regular character without glow
+            ctx.fillStyle = "#00FF41";
+            ctx.shadowColor = "transparent";
+            ctx.shadowBlur = 0;
+            ctx.fillText(char.text, i * font_size, char.y);
+          }
+        }
       }
     }
 
@@ -134,7 +158,7 @@ export function MatrixRain() {
     <canvas
       ref={canvasRef}
       className="fixed inset-0 pointer-events-none"
-      style={{ zIndex: 1, opacity: 0.4 }}
+      style={{ zIndex: 1, opacity: rain_opacity }}
     />
   );
 }
