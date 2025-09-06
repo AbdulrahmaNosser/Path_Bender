@@ -4,9 +4,9 @@ import { Header } from './components/Header';
 import { PathInput } from './components/PathInput';
 import { ConversionOutput } from './components/ConversionOutput';
 import { MatrixRain } from './components/MatrixRain';
-import { ContactPage } from './components/ContactPage';
-import { KofiButton } from './components/KofiButton';
-import { AdSenseAd } from './components/AdSenseAd';
+// import { ContactPage } from './components/ContactPage';
+// import { KofiButton } from './components/KofiButton';
+// import { AdSenseAd } from './components/AdSenseAd';
 import { PathBender } from './utils/PathBender';
 import { Theme } from './types';
 import './styles/themes.css';
@@ -16,10 +16,10 @@ function App() {
   const [theme, setTheme] = useState<Theme>(() => {
     // Load theme from localStorage on initialization
     const savedTheme = localStorage.getItem('pathBender-theme') as Theme;
-    return savedTheme || 'light-developer';
+    return savedTheme || 'programmer-dark';
   });
   const [conversionResults, setConversionResults] = useState(PathBender.convertPath(''));
-  const [currentPage, setCurrentPage] = useState<'home' | 'contact'>('home');
+  // const [currentPage, setCurrentPage] = useState<'home' | 'contact'>('home');
 
   const handleThemeChange = (newTheme: Theme) => {
     setTheme(newTheme);
@@ -60,10 +60,10 @@ function App() {
     }
   };
 
-  const getFooterClasses = () => {
-    const base = "mt-16 pt-8 border-t border-current border-opacity-20 text-center";
-    return base;
-  };
+  // const getFooterClasses = () => {
+  //   const base = "mt-16 pt-8 border-t border-current border-opacity-20 text-center";
+  //   return base;
+  // };
 
   const getButtonClasses = () => {
     const base = "inline-flex items-center gap-2 px-4 py-2 rounded-lg font-medium transition-all duration-200";
@@ -90,17 +90,17 @@ function App() {
     }
   };
 
-  if (currentPage === 'contact') {
-    return (
-      <div className={getContainerClasses()}>
-        {getBackgroundEffects()}
-        <div className="relative z-10 flex flex-col items-center">
-          <Header theme={theme} onThemeChange={handleThemeChange} />
-          <ContactPage theme={theme} onBack={() => setCurrentPage('home')} />
-        </div>
-      </div>
-    );
-  }
+  // if (currentPage === 'contact') {
+  //   return (
+  //     <div className={getContainerClasses()}>
+  //       {getBackgroundEffects()}
+  //       <div className="relative z-10 flex flex-col items-center">
+  //         <Header theme={theme} onThemeChange={handleThemeChange} />
+  //         <ContactPage theme={theme} onBack={() => setCurrentPage('home')} />
+  //       </div>
+  //     </div>
+  //   );
+  // }
 
   return (
     <div className={getContainerClasses()}>
